@@ -1,0 +1,13 @@
+---
+- hosts: tomcatServer
+
+  tasks:
+  - name: Download WAR to server
+    copy:
+      src: ~/deployWar.yaml
+      dest: /usr/share/tomcat/webapps
+      mode: 0644
+  
+  handlers:
+    - name: Restart tomcat7
+      service: name=tomcat7 state=restarted
